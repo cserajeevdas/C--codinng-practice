@@ -2,6 +2,17 @@
 //However, these member variables are typically either references or pointers 
 //that are used to point at objects that have been created outside the scope of the class.
 
+//Compositions:
+
+    //Typically use normal member variables
+    //Can use pointer values if the composition class automatically handles allocation/deallocation
+    //Responsible for creation/destruction of parts 
+
+//Aggregations:
+
+    //Typically use pointer or reference members that point to or reference objects that live outside the scope of the aggregate class
+    //Not responsible for creating/destroying parts 
+    
 //Let’s take a look at a Teacher and Department example in more detail. In this example, we’re going to make a couple of 
 //simplifications: First, the department will only hold one teacher. 
 //Second, the teacher will be unaware of what department they’re part of.
@@ -54,3 +65,13 @@ int main()
  
     return 0;
 }
+//In this case, teacher is created independently of dept, and then passed into dept’s constructor. 
+//When dept is destroyed, the m_teacher pointer is destroyed, but the teacher itself is not deleted.
+//so, it still exists until it is independently destroyed later in main().
+
+//While aggregations can be extremely useful, they are also potentially more dangerous. 
+//Because aggregations do not handle deallocation of their parts, that is left up to an external party to do so. 
+//If the external party no longer has a pointer or reference to the abandoned parts, or if
+//it simply forgets to do the cleanup (assuming the class will handle that), then memory will be leaked.
+
+For this reason, compositions should be favored over aggregations.
