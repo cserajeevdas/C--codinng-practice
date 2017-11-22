@@ -38,7 +38,7 @@ public:
 int main()
 {
     // Create a teacher outside the scope of the Department
-    Teacher *teacher = new Teacher("Bob"); // create a teacher
+    Teacher *teacher = new Teacher("Rajeev"); // create a teacher
     {
         // Create a department and use the constructor parameter to pass
         // the teacher to it.
